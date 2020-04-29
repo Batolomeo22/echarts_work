@@ -1,0 +1,106 @@
+<html>
+    <script src="static/js/commonJs/jquery-3.5.0.min.js"></script>
+    <script src="static/js/commonJs/echarts.min.js"></script>
+    <script src="static/js/commonJs/rightClick.js"></script>
+    <head>
+        测试
+    </head>
+    <body>
+        <div id="chart" style="height: 300px; width: 700px;">
+
+        </div>
+        <div id="chart2" style="height: 300px; width: 700px;">
+
+        </div>
+    </body>
+    
+    <script type="text/javascript">
+        var chartDiv = $('#chart')[0];
+        var myChart =  echarts.init(chartDiv);
+
+        var chartDiv2 = $('#chart2')[0];
+        var myChart2 =  echarts.init(chartDiv2);
+   
+        var options = {
+                    title: {
+                        text: '右键菜单',
+                        textStyle: {
+                            fontSize: 50
+                        }
+                    },
+                    xAxis: {
+                        data: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+                    },
+                    tooltip: {
+                        show: true
+                    },
+                    yAxis: {},
+                    series: [{
+                        type: 'line',
+                        data: [220, 182, 191, 234, 290, 330, 310]
+                    }, {
+                        type: 'bar',
+                        data: [220, 182, 191, 234, 290, 330, 310]
+                    }]
+                };
+
+        myChart.setOption(options);
+        myChart2.setOption(options);
+
+
+        //右键菜单容器
+        var menubox1 = createMenuBox("box1",myChart);    
+        var menubox2 = createMenuBox("box2",myChart2);     
+        
+        //绑定鼠标事件
+        $('#chart').on("mousedown",function(e){
+            //if(e.event.event.button===2){
+                //e中有当前节点信息
+            if(e.button===2){
+                showMenu(e,[
+                    {
+                        "name": "菜单1",
+                        "fn": function() {
+                            alert("触发-菜单1" + e.data);
+                            console.log(e);
+                        }
+                    }, {
+                        "name": "菜单2",
+                        "fn": function() {
+                            alert("触发-菜单2" + e.data);
+                        }
+                    }
+                ],menubox1);
+            }
+        })
+
+        //绑定鼠标事件
+        $('#chart2').on("mousedown",function(e){
+            //if(e.event.event.button===2){
+                //e中有当前节点信息
+            if(e.button===2){
+                showMenu(e,[
+                    {
+                        "name": "显示均值线",
+                        "fn": function() {
+                            var option = myChart2.getOption();
+                            option.series[0].markLine = markLineDefault;
+                            myChart2.setOption(option);
+                        }
+                    }, {
+                        "name": "取消均值线",
+                        "fn": function() {
+                            var option = myChart2.getOption();
+                            option.series[0].markLine = null;
+                            myChart2.setOption(option);
+                        }
+                    }
+                ],menubox2);
+            }
+        })
+
+        
+    
+
+    </script>
+</html>
