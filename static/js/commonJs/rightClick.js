@@ -25,7 +25,7 @@ function createMenuBox(id,myChart){
     }
 
     //点击其他位置隐藏菜单
-    $(document).click(function() {
+    $(document).click(function(e) {
         menuBox.hide()        
     });
     return menuBox;
