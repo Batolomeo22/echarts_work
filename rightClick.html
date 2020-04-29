@@ -78,19 +78,18 @@
         $('#chart2').on("mousedown",function(e){
             //if(e.event.event.button===2){
                 //e中有当前节点信息
+            let option = myChart2.getOption();   
             if(e.button===2){
                 showMenu(e,[
                     {
                         "name": "显示均值线",
                         "fn": function() {
-                            var option = myChart2.getOption();
                             option.series[0].markLine = markLineDefault;
                             myChart2.setOption(option);
                         }
                     }, {
                         "name": "取消均值线",
-                        "fn": function() {
-                            var option = myChart2.getOption();
+                        "fn": function() {                         
                             option.series[0].markLine = null;
                             myChart2.setOption(option);
                         }
@@ -98,7 +97,18 @@
                 ],menubox2);
             }
         })
-
+        myChart2.on('click', function (params) {
+            var option = myChart2.getOption();
+            if (params.componentType === 'markLine') {
+                // 点击到了 markLine 上
+                if(option.series[0].markLine.label.show === false){
+                    option.series[0].markLine.label.show = true;
+                }else{
+                    option.series[0].markLine.label.show = false;
+                }
+                myChart2.setOption(option);
+            }
+        });
         
     
 
