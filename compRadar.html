@@ -1,0 +1,46 @@
+<html>    
+    <link rel="stylesheet" type="text/css" href="static/css/commonCss/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="static/css/commonCss/bootstrap-table.min.css">
+
+    <script src="static/js/commonJs/jquery-3.5.0.min.js"></script>
+    <script src="static/js/commonJs/echarts.min.js"></script>
+    <script src="static/js/commonJs/bootstrap.min.js"></script>    
+    <script src="static/js/commonJs/bootstrap-table.min.js"></script>
+
+    <script src="static/js/chart/radar.js"></script>
+
+    <head>
+        
+    </head>
+    <body>
+        <div id="table" class="container">
+            <div class="row">
+                <div id="leftArea" class="col-sm-8">
+                    <table id="tableDev" 
+                           data-toggle="tableDev"
+                           data-single-select="true"
+                           data-click-to-select="true"
+                           data-height="515">
+                        <thead>
+                          <tr>
+                            <th data-field="state" data-checkbox="true"></th>
+                            <th data-field="comp" data-align="center">公司</th>
+                            <th data-field="efficient" data-align="center">设备运维人工效率</th>
+                            <th data-field="avgTime" data-align="center">平均年限</th>
+                            <th data-field="elecReliable" data-align="center">供电可靠率</th>
+                            <th data-field="qxEfficient" data-align="center">消缺效率</th>
+                            <th data-field="maintainAssets" data-align="center">万元资产运维费用</th>
+                          </tr>
+                        </thead>
+                      </table>
+                </div>
+                <div id="leftArea" class="col-sm-4">
+                    <div id="radarChart" style="height: calc(65vh);padding-top: 25%;">
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>
